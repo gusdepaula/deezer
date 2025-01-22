@@ -7,6 +7,7 @@ const Main = () => {
   const [tracks, setTracks] = useState([]);
   const [playingTrack, setPlayingTrack] = useState(null);
   const [audio, setAudio] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     api
@@ -18,6 +19,10 @@ const Main = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
+
+    // Carregar favoritos do localStorage
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(storedFavorites);
   }, []);
 
   const handlePlayPause = track => {
@@ -36,8 +41,19 @@ const Main = () => {
   };
 
   const handleAddToFavorites = track => {
-    // Lógica para adicionar a música à lista de favoritos
-    console.log(`Adicionando ${track.title} à lista de favoritos`);
+    let updatedFavorites;
+    if (isFavorite(track)) {
+      updatedFavorites = favorites.filter(favorite => favorite.id !== track.id);
+    } else {
+      updatedFavorites = [...favorites, track];
+    }
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    console.log(`Atualizando favoritos:`, updatedFavorites);
+  };
+
+  const isFavorite = track => {
+    return favorites.some(favorite => favorite.id === track.id);
   };
 
   return (
@@ -64,7 +80,7 @@ const Main = () => {
                   {playingTrack === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
                 </Button>
                 <Button onClick={() => handleAddToFavorites(track)} colorScheme="teal" size="sm">
-                  <FaHeart color="black" />
+                  <FaHeart color={isFavorite(track) ? 'red' : 'black'} />
                 </Button>
               </Box>
             </Flex>
