@@ -1,56 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Flex, Box, Heading, Text, Button, Image, SimpleGrid, Input } from '@chakra-ui/react';
-import { FaPlay, FaPause, FaHeart, FaSearch } from 'react-icons/fa';
-import { api } from '../../services/api';
+import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
+import { fetchTopTracks } from '../../services/api';
+import Search from '../Search';
 
 const Main = () => {
   const [tracks, setTracks] = useState([]);
   const [playingTrack, setPlayingTrack] = useState(null);
   const [audio, setAudio] = useState(null);
   const [favorites, setFavorites] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    fetchTopTrack();
+    fetchTopTracks().then(setTracks);
     // Carregar favoritos do localStorage
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
   }, []);
-
-  const fetchTopTrack = () => {
-    api
-      .get('/chart/0/tracks')
-      .then(response => {
-        setTracks(response.data.data); // A API Deezer retorna os tracks em `data`
-        console.log('API response:', response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  };
-
-  const handleSearch = () => {
-    if (searchTerm.trim() === '') {
-      fetchTopTracks();
-      return;
-    }
-
-    api
-      .get(`/search?q=${searchTerm}`)
-      .then(response => {
-        setTracks(response.data.data); // A API Deezer retorna os tracks em `data`
-        console.log('Search API response:', response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching search data:', error);
-      });
-  };
-
-  const handleKeyPress = e => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
 
   const handlePlayPause = track => {
     if (playingTrack === track.id) {
@@ -85,18 +50,7 @@ const Main = () => {
 
   return (
     <Box as="main" width="80%" p="4">
-      <Box>
-        <Input
-          placeholder="Search for a track or artist"
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-          onKeyPress={handleKeyPress}
-          width="80%"
-        />
-        <Button onClick={handleSearch}>
-          <FaSearch />
-        </Button>
-      </Box>
+      <Search setTracks={setTracks} />
 
       <Heading size="lg" mt="4">
         Top Tracks

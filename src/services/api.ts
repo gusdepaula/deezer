@@ -9,3 +9,16 @@ export const api = axios.create({
 export const apiExternal = axios.create({
   baseURL: 'https://api.deezer.com',
 });
+
+export const fetchTopTracks = () => {
+  return api
+    .get('/chart/0/tracks')
+    .then(response => {
+      console.log('API response:', response.data);
+      return response.data.data; // A API Deezer retorna os tracks em `data`
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+      throw error;
+    });
+};
