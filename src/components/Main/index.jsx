@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Heading, Text, Button, IconButton } from '@chakra-ui/react';
+import { Flex, Box, Heading, Text, Button, List, Image, SimpleGrid } from '@chakra-ui/react';
 import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
 import { api } from '../../services/api';
 
@@ -45,29 +45,32 @@ const Main = () => {
       <Heading size="lg" mt="4">
         Top Tracks
       </Heading>
-      <ul>
-        {tracks.map(track => (
-          <li key={track.id}>
-            <img src={track.album.cover_small} alt={track.title} />
-            <Box>
-              <Box flex="1">
+      <SimpleGrid columns={2} spacing={5} mt="4">
+        {tracks.map((track, index) => (
+          <Box key={track.id} border="1px solid #ccc" padding="10px" py="4">
+            <Flex alignItems="center">
+              <Text fontWeight="bold" mr="4">
+                #{index + 1}
+              </Text>
+              <Image src={track.album.cover_medium} alt={track.title} boxSize="100px" mr="4" />
+              <Box flex="1" textAlign="left">
                 <Text fontWeight="bold">{track.title}</Text>
-                <Text>{track.artist.name}</Text>
-                <Text>{(track.duration / 60).toFixed(2)} min</Text>
+                <Text>Artista: {track.artist.name}</Text>
+                <Text>Duração: {(track.duration / 60).toFixed(2)} min</Text>
+                <Button as="a" href={track.link} target="_blank" colorScheme="teal" size="sm" mr="2">
+                  Ver Completa
+                </Button>
+                <Button onClick={() => handlePlayPause(track)} colorScheme="teal" size="sm" mr="2">
+                  {playingTrack === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
+                </Button>
+                <Button onClick={() => handleAddToFavorites(track)} colorScheme="teal" size="sm">
+                  <FaHeart color="black" />
+                </Button>
               </Box>
-              <Button as="a" href={track.link} target="_blank" colorScheme="teal" size="sm" mr="2">
-                Ver Completa
-              </Button>
-              <Button onClick={() => handlePlayPause(track)} colorScheme="teal" size="sm" mr="2">
-                {playingTrack === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
-              </Button>
-              <Button onClick={() => handleAddToFavorites(track)} colorScheme="teal" size="sm">
-                <FaHeart color="black" />
-              </Button>
-            </Box>
-          </li>
+            </Flex>
+          </Box>
         ))}
-      </ul>
+      </SimpleGrid>
     </Box>
   );
 };
