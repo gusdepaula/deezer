@@ -1,10 +1,14 @@
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Image } from '@chakra-ui/react';
+import { FaHeart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 export default function Aside() {
   return (
     <Box as="aside" width="20%" p="4" height="100vh">
-      <Heading size="md">Aside</Heading>
-      <Text>Some content for the aside.</Text>
+      <Link to={'/'}>
+        <Image src="../../../public/images/logo-deezer.png"></Image>
+      </Link>
+      <Link to="/favorites">Favoritos</Link>
     </Box>
   );
 }
