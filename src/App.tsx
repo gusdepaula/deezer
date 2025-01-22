@@ -6,7 +6,7 @@ import Main from './components/Main';
 
 function App() {
   return (
-    <Flex height={'100vh'} flexDirection={'column'}>
+    <Flex height="100vh" flexDirection="row">
       <Aside />
       <Main />
     </Flex>

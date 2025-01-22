@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Este usa o proxy configurado no Vite
-export const apiNext = axios.create({
+export const api = axios.create({
   baseURL: '/api', // Redireciona para o proxy configurado no Vite
 });
 
