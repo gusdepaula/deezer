@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Flex, Box, Heading, Text, Button, Image, SimpleGrid, Input } from '@chakra-ui/react';
+import { Flex, Box, Heading, Text, Button, Image, SimpleGrid } from '@chakra-ui/react';
 import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
 import { fetchTopTracks } from '../../services/api';
 import Search from '../Search';
@@ -49,17 +49,17 @@ const Main = () => {
   };
 
   return (
-    <Box as="main" width="80%" p="4">
+    <Box as="main" width={{ base: '100%', md: '100%' }} p="4">
       <Search setTracks={setTracks} />
 
       <Heading size="lg" mt="4">
         Top Tracks
       </Heading>
 
-      <SimpleGrid columns={2} spacing={5} mt="4">
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5} mt="4">
         {tracks.map((track, index) => (
           <Box key={track.id} border="1px solid #ccc" padding="10px" py="4">
-            <Flex alignItems="center">
+            <Flex alignItems="center" flexDirection={{ base: 'column', md: 'row' }}>
               <Text fontWeight="bold" mr="4">
                 #{index + 1}
               </Text>

@@ -44,17 +44,17 @@ const Favorites = () => {
   };
 
   return (
-    <Box as="main" width="80%" p="4">
+    <Box as="main" width={{ base: '100%', md: '100%' }} p="4">
       <Heading size="lg" mt="4">
         Favorites
       </Heading>
       {favorites.length === 0 ? (
         <Text mt="4">No favorite tracks found.</Text>
       ) : (
-        <SimpleGrid columns={2} spacing={5} mt="4">
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5} mt="4">
           {favorites.map((track, index) => (
             <Box key={track.id} border="1px solid #ccc" padding="10px" py="4">
-              <Flex alignItems="center">
+              <Flex alignItems="center" flexDirection={{ base: 'column', md: 'row' }}>
                 <Text fontWeight="bold" mr="4">
                   #{index + 1}
                 </Text>
