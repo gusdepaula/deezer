@@ -24,7 +24,7 @@ function App() {
   return (
     <Flex height="100vh" flexDirection={{ base: 'column', md: 'row' }}>
       <Aside resetTracks={resetTracks} />
-      <Box flex="1" overflowY="auto">
+      <Box flex="1">
         <Routes>
           <Route path="/" element={<Main tracks={tracks} setTracks={setTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
           <Route path="/favorites" element={<Favorites />} />
