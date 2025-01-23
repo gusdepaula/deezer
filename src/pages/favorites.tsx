@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Heading, Text, SimpleGrid, Image, Button, Flex } from '@chakra-ui/react';
-import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
+import { FaPlay, FaPause } from 'react-icons/fa';
+import ButtonFavorite from '../components/ButtonFavorite';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -36,13 +37,6 @@ const Favorites = () => {
     }
   };
 
-  const handleRemoveFromFavorites = track => {
-    const updatedFavorites = favorites.filter(favorite => favorite.id !== track.id);
-    setFavorites(updatedFavorites);
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    console.log(`Removendo ${track.title} dos favoritos`);
-  };
-
   return (
     <Box as="main" width={{ base: '100%', md: '100%' }} p="4">
       <Heading size="lg" mt="4">
@@ -69,9 +63,7 @@ const Favorites = () => {
                   <Button onClick={() => handlePlayPause(track)} colorScheme="teal" size="sm" mr="2">
                     {playingTrack === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
                   </Button>
-                  <Button onClick={() => handleRemoveFromFavorites(track)} colorScheme="teal" size="sm">
-                    <FaHeart color="red" />
-                  </Button>
+                  <ButtonFavorite track={track} favorites={favorites} setFavorites={setFavorites} />
                 </Box>
               </Flex>
             </Box>

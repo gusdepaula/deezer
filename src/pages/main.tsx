@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Flex, Box, Heading, Text, Button, Image, SimpleGrid } from '@chakra-ui/react';
-import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
+import { FaPlay, FaPause } from 'react-icons/fa';
 import { fetchTopTracks } from '../services/api';
 import Search from '../components/Search';
+import ButtonFavorite from '../components/ButtonFavorite';
 
 const Main = () => {
   const [tracks, setTracks] = useState([]);
@@ -32,22 +33,6 @@ const Main = () => {
     }
   };
 
-  const handleAddToFavorites = track => {
-    let updatedFavorites;
-    if (isFavorite(track)) {
-      updatedFavorites = favorites.filter(favorite => favorite.id !== track.id);
-    } else {
-      updatedFavorites = [...favorites, track];
-    }
-    setFavorites(updatedFavorites);
-    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    console.log(`Atualizando favoritos:`, updatedFavorites);
-  };
-
-  const isFavorite = track => {
-    return favorites.some(favorite => favorite.id === track.id);
-  };
-
   return (
     <Box as="main" width={{ md: '100%' }} p="4">
       <Search setTracks={setTracks} />
@@ -56,7 +41,7 @@ const Main = () => {
         Top Tracks
       </Heading>
 
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5} mt="4">
+      <SimpleGrid columns={{ md: 2 }} spacing={5} mt="4">
         {tracks.map((track, index) => (
           <Box key={track.id} border="1px solid #ccc" padding="10px" py="4">
             <Flex alignItems="center" flexDirection={{ base: 'column', md: 'row' }}>
@@ -74,9 +59,7 @@ const Main = () => {
                 <Button onClick={() => handlePlayPause(track)} colorScheme="teal" size="sm" mr="2">
                   {playingTrack === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
                 </Button>
-                <Button onClick={() => handleAddToFavorites(track)} colorScheme="teal" size="sm">
-                  <FaHeart color={isFavorite(track) ? 'red' : 'black'} />
-                </Button>
+                <ButtonFavorite track={track} favorites={favorites} setFavorites={setFavorites} />
               </Box>
             </Flex>
           </Box>
