@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Flex, Box, Heading, Text, Button, Image, SimpleGrid } from '@chakra-ui/react';
 import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
-import { fetchTopTracks } from '../../services/api';
-import Search from '../Search';
+import { fetchTopTracks } from '../services/api';
+import Search from '../components/Search';
 
 const Main = () => {
   const [tracks, setTracks] = useState([]);
@@ -49,7 +49,7 @@ const Main = () => {
   };
 
   return (
-    <Box as="main" width={{ base: '100%', md: '100%' }} p="4">
+    <Box as="main" width={{ md: '100%' }} p="4">
       <Search setTracks={setTracks} />
 
       <Heading size="lg" mt="4">

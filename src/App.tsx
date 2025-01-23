@@ -1,9 +1,9 @@
 import './App.css';
 import { Flex, Box } from '@chakra-ui/react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Favorites from './components/Favorites';
+import { Route, Routes } from 'react-router-dom';
+import Favorites from './pages/Favorites';
 import Aside from './components/Aside';
-import Main from './components/Main';
+import Main from './pages/Main';
 import { fetchTopTracks } from './services/api';
 
 function App() {
