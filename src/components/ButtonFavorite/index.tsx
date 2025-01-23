@@ -24,7 +24,7 @@ const ButtonFavorite = ({ track, favorites, setFavorites }: ButtonFavoriteProps)
 
   return (
     <Button onClick={handleAddToFavorites} colorScheme="teal" size="sm">
-      <FaHeart color={isFavorite ? 'red' : 'black'} />
+      <FaHeart style={{ fill: isFavorite ? 'red' : 'black' }} />
     </Button>
   );
 };
