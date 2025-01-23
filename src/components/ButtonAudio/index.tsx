@@ -1,11 +1,11 @@
-import { ButtonAudioProps } from '../../types';
 import { Button } from '@chakra-ui/react';
 import { FaPause, FaPlay } from 'react-icons/fa';
+import { ButtonAudioProps } from '../../types';
 
 const ButtonAudio = ({ track, playingTrack, setPlayingTrack, audio, setAudio }: ButtonAudioProps) => {
   const handlePlayPause = () => {
-    if (playingTrack === track.id) {
-      audio.pause();
+    if (playingTrack?.id === track.id) {
+      audio?.pause();
       setPlayingTrack(null);
     } else {
       if (audio) {
@@ -14,13 +14,13 @@ const ButtonAudio = ({ track, playingTrack, setPlayingTrack, audio, setAudio }: 
       const newAudio = new Audio(track.preview);
       newAudio.play();
       setAudio(newAudio);
-      setPlayingTrack(track.id);
+      setPlayingTrack(track);
     }
   };
 
   return (
     <Button onClick={handlePlayPause} colorScheme="teal" size="sm" mr="2">
-      {playingTrack === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
+      {playingTrack?.id === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
     </Button>
   );
 };

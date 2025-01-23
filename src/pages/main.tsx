@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Heading } from '@chakra-ui/react';
 import Search from '../components/Search';
 import TrackGrid from '../components/TrackGrid';
-import { MainProps, Track } from '../../types';
+import { MainProps, Track } from '../types';
 
 const Main = ({ tracks, setTracks, searchTerm, setSearchTerm }: MainProps) => {
   const [playingTrack, setPlayingTrack] = useState<Track | null>(null);
