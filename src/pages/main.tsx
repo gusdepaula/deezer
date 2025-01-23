@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Flex, Box, Heading, Text, Button, Image, SimpleGrid } from '@chakra-ui/react';
-import { FaPlay, FaPause } from 'react-icons/fa';
 import Search from '../components/Search';
 import ButtonFavorite from '../components/ButtonFavorite';
+import ButtonAudio from '../components/ButtonAudio';
 
 const Main = ({ tracks, setTracks, searchTerm, setSearchTerm }) => {
   const [playingTrack, setPlayingTrack] = useState(null);
@@ -14,21 +14,6 @@ const Main = ({ tracks, setTracks, searchTerm, setSearchTerm }) => {
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
   }, []);
-
-  const handlePlayPause = track => {
-    if (playingTrack === track.id) {
-      audio.pause();
-      setPlayingTrack(null);
-    } else {
-      if (audio) {
-        audio.pause();
-      }
-      const newAudio = new Audio(track.preview);
-      newAudio.play();
-      setAudio(newAudio);
-      setPlayingTrack(track.id);
-    }
-  };
 
   return (
     <Box as="main" width={{ md: '100%' }} p="4">
@@ -53,9 +38,13 @@ const Main = ({ tracks, setTracks, searchTerm, setSearchTerm }) => {
                 <Button as="a" href={track.link} target="_blank" colorScheme="teal" size="sm" mr="2">
                   Ver Completa
                 </Button>
-                <Button onClick={() => handlePlayPause(track)} colorScheme="teal" size="sm" mr="2">
-                  {playingTrack === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
-                </Button>
+                <ButtonAudio
+                  track={track}
+                  playingTrack={playingTrack}
+                  setPlayingTrack={setPlayingTrack}
+                  audio={audio}
+                  setAudio={setAudio}
+                />
                 <ButtonFavorite track={track} favorites={favorites} setFavorites={setFavorites} />
               </Box>
             </Flex>

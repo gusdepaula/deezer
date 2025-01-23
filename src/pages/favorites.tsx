@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Heading, Text, SimpleGrid, Image, Button, Flex } from '@chakra-ui/react';
-import { FaPlay, FaPause } from 'react-icons/fa';
 import ButtonFavorite from '../components/ButtonFavorite';
+import ButtonAudio from '../components/ButtonAudio';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -14,28 +14,6 @@ const Favorites = () => {
     setFavorites(storedFavorites);
     console.log('Favoritos carregados:', storedFavorites);
   }, []);
-
-  const handlePlayPause = track => {
-    if (!track.preview) {
-      console.error('URL de pré-visualização não disponível para esta faixa:', track);
-      return;
-    }
-
-    if (playingTrack === track.id) {
-      audio.pause();
-      setPlayingTrack(null);
-    } else {
-      if (audio) {
-        audio.pause();
-      }
-      const newAudio = new Audio(track.preview);
-      newAudio.play().catch(error => {
-        console.error('Erro ao reproduzir a música:', error);
-      });
-      setAudio(newAudio);
-      setPlayingTrack(track.id);
-    }
-  };
 
   return (
     <Box as="main" width={{ base: '100%', md: '100%' }} p="4">
@@ -60,9 +38,13 @@ const Favorites = () => {
                   <Button as="a" href={track.link} target="_blank" colorScheme="teal" size="sm" mr="2">
                     Ver Completa
                   </Button>
-                  <Button onClick={() => handlePlayPause(track)} colorScheme="teal" size="sm" mr="2">
-                    {playingTrack === track.id ? <FaPause color="black" /> : <FaPlay color="black" />}
-                  </Button>
+                  <ButtonAudio
+                    track={track}
+                    playingTrack={playingTrack}
+                    setPlayingTrack={setPlayingTrack}
+                    audio={audio}
+                    setAudio={setAudio}
+                  />
                   <ButtonFavorite track={track} favorites={favorites} setFavorites={setFavorites} />
                 </Box>
               </Flex>
