@@ -1,16 +1,7 @@
 import { Box, SimpleGrid, Flex, Text, Image, Button } from '@chakra-ui/react';
 import ButtonAudio from '../ButtonAudio';
 import ButtonFavorite from '../ButtonFavorite';
-
-interface TrackGridProps {
-  tracks: any[];
-  playingTrack: any;
-  setPlayingTrack: (track: any) => void;
-  audio: any;
-  setAudio: (audio: any) => void;
-  favorites: any[];
-  setFavorites: (favorites: any[]) => void;
-}
+import { TrackGridProps } from '../../types';
 
 const TrackGrid = ({ tracks, playingTrack, setPlayingTrack, audio, setAudio, favorites, setFavorites }: TrackGridProps) => {
   return (

@@ -1,13 +1,6 @@
+import { ButtonAudioProps } from '../../types';
 import { Button } from '@chakra-ui/react';
 import { FaPause, FaPlay } from 'react-icons/fa';
-
-interface ButtonAudioProps {
-  track: any;
-  playingTrack: any;
-  setPlayingTrack: (track: any) => void;
-  audio: any;
-  setAudio: (audio: any) => void;
-}
 
 const ButtonAudio = ({ track, playingTrack, setPlayingTrack, audio, setAudio }: ButtonAudioProps) => {
   const handlePlayPause = () => {

@@ -1,8 +1,9 @@
 import { Box, Button, Input } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 import { api, fetchTopTracks } from '../../services/api';
+import { SearchProps } from '../../types';
 
-const Search = ({ setTracks, searchTerm, setSearchTerm }) => {
+const Search = ({ setTracks, searchTerm, setSearchTerm }: SearchProps) => {
   const handleSearch = () => {
     if (searchTerm.trim() === '') {
       fetchTopTracks().then(setTracks);

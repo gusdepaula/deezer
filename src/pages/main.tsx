@@ -2,13 +2,7 @@ import { useEffect, useState } from 'react';
 import { Box, Heading } from '@chakra-ui/react';
 import Search from '../components/Search';
 import TrackGrid from '../components/TrackGrid';
-
-interface MainProps {
-  tracks: any[];
-  setTracks: (tracks: any[]) => void;
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-}
+import { MainProps } from '../types';
 
 const Main = ({ tracks, setTracks, searchTerm, setSearchTerm }: MainProps) => {
   const [playingTrack, setPlayingTrack] = useState(null);
