@@ -1,6 +1,6 @@
 import { Box, Button, Input } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
-import { api, fetchTopTracks } from '../../services/api';
+import { searchTracks, fetchTopTracks } from '../../services/api';
 import { SearchProps } from '../../types';
 
 const Search = ({ setTracks, searchTerm, setSearchTerm }: SearchProps) => {
@@ -10,12 +10,8 @@ const Search = ({ setTracks, searchTerm, setSearchTerm }: SearchProps) => {
       return;
     }
 
-    api
-      .get(`/search?q=${searchTerm}`)
-      .then(response => {
-        setTracks(response.data.data); // A API Deezer retorna os tracks em `data`
-        console.log('Search API response:', response.data);
-      })
+    searchTracks(searchTerm)
+      .then(setTracks)
       .catch(error => {
         console.error('Error fetching search data:', error);
       });

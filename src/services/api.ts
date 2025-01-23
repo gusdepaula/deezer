@@ -1,24 +1,13 @@
 import axios from 'axios';
 
-// Este usa o proxy configurado no Vite
-export const api = axios.create({
-  baseURL: '/api', // Redireciona para o proxy configurado no Vite
-});
+const API_BASE_URL = 'https://api.deezer.com';
 
-// Se precisar de outra API externa sem passar pelo proxy:
-export const apiExternal = axios.create({
-  baseURL: 'https://api.deezer.com',
-});
+export const fetchTopTracks = async () => {
+  const response = await axios.get(`${API_BASE_URL}/chart/0/tracks`);
+  return response.data.data;
+};
 
-export const fetchTopTracks = () => {
-  return api
-    .get('/chart/0/tracks')
-    .then(response => {
-      console.log('API response:', response.data);
-      return response.data.data; // A API Deezer retorna os tracks em `data`
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-      throw error;
-    });
+export const searchTracks = async (query: string) => {
+  const response = await axios.get(`${API_BASE_URL}/search?q=${query}`);
+  return response.data.data;
 };
