@@ -1,9 +1,6 @@
+import { AsideProps } from '../../types';
 import { Box, Image } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-
-interface AsideProps {
-  resetTracks: () => void;
-}
 
 export default function Aside({ resetTracks }: AsideProps) {
   return (
