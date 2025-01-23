@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Flex, Box, Heading, Text, Button, Image, SimpleGrid } from '@chakra-ui/react';
 import { FaPlay, FaPause } from 'react-icons/fa';
-import { fetchTopTracks } from '../services/api';
 import Search from '../components/Search';
 import ButtonFavorite from '../components/ButtonFavorite';
 
-const Main = () => {
-  const [tracks, setTracks] = useState([]);
+const Main = ({ tracks, setTracks, searchTerm, setSearchTerm }) => {
   const [playingTrack, setPlayingTrack] = useState(null);
   const [audio, setAudio] = useState(null);
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetchTopTracks().then(setTracks);
     // Carregar favoritos do localStorage
     const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(storedFavorites);
@@ -35,10 +32,10 @@ const Main = () => {
 
   return (
     <Box as="main" width={{ md: '100%' }} p="4">
-      <Search setTracks={setTracks} />
+      <Search setTracks={setTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       <Heading size="lg" mt="4">
-        Top Tracks
+        {searchTerm ? `Results for "${searchTerm}"` : 'Top Tracks'}
       </Heading>
 
       <SimpleGrid columns={{ md: 2 }} spacing={5} mt="4">

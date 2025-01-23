@@ -1,11 +1,8 @@
 import { Box, Button, Input } from '@chakra-ui/react';
-import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { api, fetchTopTracks } from '../../services/api';
 
-const Search = ({ setTracks }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
+const Search = ({ setTracks, searchTerm, setSearchTerm }) => {
   const handleSearch = () => {
     if (searchTerm.trim() === '') {
       fetchTopTracks().then(setTracks);
@@ -30,7 +27,7 @@ const Search = ({ setTracks }) => {
   };
 
   return (
-    <Box>
+    <Box mb="4">
       <Input
         placeholder="Search for a track or artist"
         value={searchTerm}
@@ -38,7 +35,7 @@ const Search = ({ setTracks }) => {
         onKeyPress={handleKeyPress}
         width="80%"
       />
-      <Button onClick={handleSearch}>
+      <Button h="1.75rem" size="sm" onClick={handleSearch}>
         <FaSearch />
       </Button>
     </Box>
