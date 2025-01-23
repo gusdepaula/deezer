@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Heading, Text, SimpleGrid, Image, Button, Flex } from '@chakra-ui/react';
 import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
 
@@ -15,6 +15,11 @@ const Favorites = () => {
   }, []);
 
   const handlePlayPause = track => {
+    if (!track.preview) {
+      console.error('URL de pré-visualização não disponível para esta faixa:', track);
+      return;
+    }
+
     if (playingTrack === track.id) {
       audio.pause();
       setPlayingTrack(null);
@@ -23,7 +28,9 @@ const Favorites = () => {
         audio.pause();
       }
       const newAudio = new Audio(track.preview);
-      newAudio.play();
+      newAudio.play().catch(error => {
+        console.error('Erro ao reproduzir a música:', error);
+      });
       setAudio(newAudio);
       setPlayingTrack(track.id);
     }
