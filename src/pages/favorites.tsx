@@ -10,8 +10,6 @@ const Favorites = () => {
     console.log('Favoritos carregados:', storedFavorites);
     return storedFavorites;
   });
-  const [playingTrack, setPlayingTrack] = useState<Track | null>(null);
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   return (
     <Box as="main" width={{ base: '100%', md: '100%' }} p="4">
@@ -21,15 +19,7 @@ const Favorites = () => {
       {favorites.length === 0 ? (
         <Text mt="4">No favorite tracks found.</Text>
       ) : (
-        <TrackGrid
-          tracks={favorites}
-          playingTrack={playingTrack}
-          setPlayingTrack={setPlayingTrack}
-          audio={audio}
-          setAudio={setAudio}
-          favorites={favorites}
-          setFavorites={setFavorites}
-        />
+        <TrackGrid tracks={favorites} favorites={favorites} setFavorites={setFavorites} />
       )}
     </Box>
   );
