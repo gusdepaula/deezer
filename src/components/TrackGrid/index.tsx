@@ -16,12 +16,23 @@ const TrackGrid: React.FC<TrackGridProps> = ({ tracks, favorites, setFavorites }
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} mt="4">
       {tracks.map((track, index) => (
-        <Box key={track.id} border="1px solid #ccc" padding="10px" py="4">
+        <Box
+          key={track.id}
+          padding="10px"
+          py="4"
+          borderRadius="md"
+          boxShadow="md"
+          border="1px solid"
+          borderColor="#27272b"
+          _hover={{ boxShadow: 'lg', transform: 'translateY(-2px)' }}
+          transition="all 0.3s ease"
+          margin="10px"
+        >
           <Flex alignItems="center" flexDirection={{ base: 'column', md: 'row' }}>
             <Text fontWeight="bold" mr="4">
               #{index + 1}
             </Text>
-            <Image src={track.album.cover_medium} alt={track.title} boxSize="100px" mr="4" />
+            <Image src={track.album.cover_medium} alt={track.title} boxSize="100px" mr="4" borderRadius="md" />
             <Box flex="1" textAlign={{ base: 'center', md: 'left' }}>
               <Text fontWeight="bold" lineHeight="1.5" minHeight="3em">
                 {track.title}
