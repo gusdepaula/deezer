@@ -1,3 +1,4 @@
+import React from 'react';
 import { TrackGridProps } from '../../types';
-declare const TrackGrid: ({ tracks, favorites, setFavorites }: TrackGridProps) => import("react/jsx-runtime").JSX.Element;
+declare const TrackGrid: React.FC<TrackGridProps>;
 export default TrackGrid;

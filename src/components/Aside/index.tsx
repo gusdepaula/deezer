@@ -1,7 +1,9 @@
 import { AsideProps } from '../../types';
-import { Box, Button, Image } from '@chakra-ui/react';
+import { Box, Button, Image, ButtonProps } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, LinkProps } from 'react-router-dom';
+
+const ButtonLink = (props: ButtonProps & LinkProps) => <Button as={RouterLink} {...props} />;
 
 const Aside = ({ resetTracks }: AsideProps) => {
   return (
@@ -11,8 +13,7 @@ const Aside = ({ resetTracks }: AsideProps) => {
       </RouterLink>
 
       <Box display={{ base: 'flex', md: 'block' }} justifyContent="center" mt="4">
-        <Button
-          as={RouterLink}
+        <ButtonLink
           to="/favorites"
           onClick={resetTracks}
           colorScheme="teal"
@@ -21,7 +22,7 @@ const Aside = ({ resetTracks }: AsideProps) => {
         >
           <FaHeart style={{ marginRight: '8px' }} />
           Favorites
-        </Button>
+        </ButtonLink>
       </Box>
     </Box>
   );
