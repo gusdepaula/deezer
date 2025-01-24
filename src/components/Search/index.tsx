@@ -1,15 +1,10 @@
-import { Box, Button, Input } from '@chakra-ui/react';
+import React from 'react';
+import { Box, Input, Button, Flex } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
-import { searchTracks, fetchTopTracks } from '../../services/api';
 import { SearchProps } from '../../types';
 
-const Search = ({ setTracks, searchTerm, setSearchTerm }: SearchProps) => {
+const Search: React.FC<SearchProps> = ({ searchTerm, setSearchTerm, setTracks }) => {
   const handleSearch = () => {
-    if (searchTerm.trim() === '') {
-      fetchTopTracks().then(setTracks);
-      return;
-    }
-
     searchTracks(searchTerm)
       .then(setTracks)
       .catch(error => {
@@ -24,17 +19,26 @@ const Search = ({ setTracks, searchTerm, setSearchTerm }: SearchProps) => {
   };
 
   return (
-    <Box mb="4" marginTop={{ base: '0', md: '30px' }} marginLeft={{ base: '0', md: '10px' }}>
-      <Input
-        placeholder="Search for a track or artist"
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-        onKeyPress={handleKeyPress}
-        width={{ base: '83%', md: '95%' }}
-      />
-      <Button onClick={handleSearch} data-testid="search-button">
-        <FaSearch />
-      </Button>
+    <Box
+      mb="4"
+      width={{ base: 'auto', md: '1309px' }}
+      mx="auto"
+      marginTop={{ base: '0', md: '30px' }}
+      marginLeft={{ base: '0', md: '10px' }}
+    >
+      <Flex alignItems="center">
+        <Input
+          placeholder="Search for a track or artist"
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
+          width="100%"
+          borderRightRadius="0"
+        />
+        <Button onClick={handleSearch} data-testid="search-button" borderLeftRadius="0">
+          <FaSearch />
+        </Button>
+      </Flex>
     </Box>
   );
 };
