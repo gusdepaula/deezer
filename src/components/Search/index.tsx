@@ -24,7 +24,7 @@ const Search = ({ setTracks, searchTerm, setSearchTerm }: SearchProps) => {
   };
 
   return (
-    <Box mb="4">
+    <Box mb="4" marginTop={{ base: '0', md: '30px' }}>
       <Input
         placeholder="Search for a track or artist"
         value={searchTerm}
