@@ -25,7 +25,7 @@ const TrackGrid = ({ tracks, favorites, setFavorites }: TrackGridProps) => {
               <Text>Artista: {track.artist.name}</Text>
               <Text>Duração: {(track.duration / 60).toFixed(2)} min</Text>
               <Link href={track.link} target="_blank">
-                <Button colorScheme="teal" size="sm" mr="2">
+                <Button colorScheme="teal" size="sm" mr="2" _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}>
                   Ver Completa
                 </Button>
               </Link>

@@ -28,7 +28,7 @@ const ButtonAudio = ({ track }: ButtonAudioProps) => {
   };
 
   return (
-    <Button onClick={handlePlayPause} colorScheme="teal" size="sm" mr="2">
+    <Button onClick={handlePlayPause} colorScheme="teal" size="sm" mr="2" _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}>
       {isPlaying ? <FaPause /> : <FaPlay />}
     </Button>
   );

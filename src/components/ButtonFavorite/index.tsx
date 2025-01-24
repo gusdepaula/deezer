@@ -18,7 +18,7 @@ const ButtonFavorite = ({ track, favorites, setFavorites }: ButtonFavoriteProps)
   };
 
   return (
-    <Button onClick={handleAddToFavorites} colorScheme="teal" size="sm">
+    <Button onClick={handleAddToFavorites} colorScheme="teal" size="sm" _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}>
       <FaHeart style={{ fill: isFavorite ? 'red' : 'black' }} />
     </Button>
   );
