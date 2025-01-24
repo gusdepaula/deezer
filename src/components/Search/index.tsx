@@ -2,12 +2,13 @@ import React from 'react';
 import { Box, Input, Button, Flex } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 import { SearchProps } from '../../types';
+import { searchTracks } from '../../services/api'; // Certifique-se de que o caminho esteja correto
 
 const Search: React.FC<SearchProps> = ({ searchTerm, setSearchTerm, setTracks }) => {
   const handleSearch = () => {
     searchTracks(searchTerm)
       .then(setTracks)
-      .catch(error => {
+      .catch((error: any) => {
         console.error('Error fetching search data:', error);
       });
   };
