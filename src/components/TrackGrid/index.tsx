@@ -1,9 +1,10 @@
+import React from 'react';
 import { Box, SimpleGrid, Flex, Text, Image, Button, Link } from '@chakra-ui/react';
 import ButtonAudio from '../ButtonAudio';
 import ButtonFavorite from '../ButtonFavorite';
 import { TrackGridProps } from '../../types';
 
-const TrackGrid = ({ tracks, favorites, setFavorites }: TrackGridProps) => {
+const TrackGrid: React.FC<TrackGridProps> = ({ tracks, favorites, setFavorites }) => {
   if (tracks.length === 0) {
     return (
       <Text mt="4" data-testid="no-favorite">
@@ -11,6 +12,7 @@ const TrackGrid = ({ tracks, favorites, setFavorites }: TrackGridProps) => {
       </Text>
     );
   }
+
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} mt="4">
       {tracks.map((track, index) => (
@@ -21,16 +23,20 @@ const TrackGrid = ({ tracks, favorites, setFavorites }: TrackGridProps) => {
             </Text>
             <Image src={track.album.cover_medium} alt={track.title} boxSize="100px" mr="4" />
             <Box flex="1" textAlign={{ base: 'center', md: 'left' }}>
-              <Text fontWeight="bold">{track.title}</Text>
+              <Text fontWeight="bold" lineHeight="1.5" minHeight="3em">
+                {track.title}
+              </Text>
               <Text>Artista: {track.artist.name}</Text>
               <Text>Duração: {(track.duration / 60).toFixed(2)} min</Text>
-              <Link href={track.link} target="_blank">
-                <Button colorScheme="teal" size="sm" mr="2" _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}>
-                  Ver Completa
-                </Button>
-              </Link>
-              <ButtonAudio track={track} />
-              <ButtonFavorite track={track} favorites={favorites} setFavorites={setFavorites} />
+              <Flex mt="2" alignItems="center" justifyContent={{ base: 'center', md: 'flex-start' }}>
+                <Link href={track.link} target="_blank">
+                  <Button colorScheme="teal" size="sm" mr="2" _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}>
+                    Ver Completa
+                  </Button>
+                </Link>
+                <ButtonAudio track={track} />
+                <ButtonFavorite track={track} favorites={favorites} setFavorites={setFavorites} />
+              </Flex>
             </Box>
           </Flex>
         </Box>

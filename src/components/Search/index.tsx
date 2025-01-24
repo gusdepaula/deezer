@@ -30,7 +30,7 @@ const Search = ({ setTracks, searchTerm, setSearchTerm }: SearchProps) => {
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
         onKeyPress={handleKeyPress}
-        width="80%"
+        width={{ base: '83%', md: '95%' }}
       />
       <Button onClick={handleSearch} data-testid="search-button">
         <FaSearch />
