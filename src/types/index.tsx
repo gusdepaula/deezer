@@ -27,18 +27,10 @@ export interface ButtonFavoriteProps {
 
 export interface ButtonAudioProps {
   track: Track;
-  playingTrack: Track | null;
-  setPlayingTrack: (track: Track | null) => void;
-  audio: HTMLAudioElement | null;
-  setAudio: (audio: HTMLAudioElement | null) => void;
 }
 
 export interface TrackGridProps {
   tracks: Track[];
-  playingTrack: Track | null;
-  setPlayingTrack: (track: Track | null) => void;
-  audio: HTMLAudioElement | null;
-  setAudio: (audio: HTMLAudioElement | null) => void;
   favorites: Track[];
   setFavorites: (favorites: Track[]) => void;
 }

@@ -3,7 +3,7 @@ import ButtonAudio from '../ButtonAudio';
 import ButtonFavorite from '../ButtonFavorite';
 import { TrackGridProps } from '../../types';
 
-const TrackGrid = ({ tracks, playingTrack, setPlayingTrack, audio, setAudio, favorites, setFavorites }: TrackGridProps) => {
+const TrackGrid = ({ tracks, favorites, setFavorites }: TrackGridProps) => {
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} mt="4">
       {tracks.map((track, index) => (
@@ -22,7 +22,7 @@ const TrackGrid = ({ tracks, playingTrack, setPlayingTrack, audio, setAudio, fav
                   Ver Completa
                 </Button>
               </Link>
-              <ButtonAudio track={track} playingTrack={playingTrack} setPlayingTrack={setPlayingTrack} audio={audio} setAudio={setAudio} />
+              <ButtonAudio track={track} />
               <ButtonFavorite track={track} favorites={favorites} setFavorites={setFavorites} />
             </Box>
           </Flex>

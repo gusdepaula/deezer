@@ -5,8 +5,6 @@ import TrackGrid from '../components/TrackGrid';
 import { MainProps, Track } from '../types';
 
 const Main = ({ tracks, setTracks, searchTerm, setSearchTerm }: MainProps) => {
-  const [playingTrack, setPlayingTrack] = useState<Track | null>(null);
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [favorites, setFavorites] = useState<Track[]>(() => {
     // Carregar favoritos do localStorage
     const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -22,15 +20,7 @@ const Main = ({ tracks, setTracks, searchTerm, setSearchTerm }: MainProps) => {
         {searchTerm ? `Results for "${searchTerm}"` : 'Top Tracks'}
       </Heading>
 
-      <TrackGrid
-        tracks={tracks}
-        playingTrack={playingTrack}
-        setPlayingTrack={setPlayingTrack}
-        audio={audio}
-        setAudio={setAudio}
-        favorites={favorites}
-        setFavorites={setFavorites}
-      />
+      <TrackGrid tracks={tracks} favorites={favorites} setFavorites={setFavorites} />
     </Box>
   );
 };
