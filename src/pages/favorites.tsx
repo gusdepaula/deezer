@@ -13,7 +13,7 @@ const Favorites = () => {
 
   return (
     <Box as="main" width={{ base: '100%', md: '100%' }} p="4">
-      <Heading size="lg" mt="4">
+      <Heading size="lg" mt="4" textAlign="center">
         Favorites
       </Heading>
       {favorites.length === 0 ? (

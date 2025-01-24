@@ -13,7 +13,7 @@ const TrackGrid = ({ tracks, favorites, setFavorites }: TrackGridProps) => {
               #{index + 1}
             </Text>
             <Image src={track.album.cover_medium} alt={track.title} boxSize="100px" mr="4" />
-            <Box flex="1" textAlign="left">
+            <Box flex="1" textAlign={{ base: 'center', md: 'left' }}>
               <Text fontWeight="bold">{track.title}</Text>
               <Text>Artista: {track.artist.name}</Text>
               <Text>Duração: {(track.duration / 60).toFixed(2)} min</Text>
