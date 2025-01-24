@@ -1,4 +1,4 @@
-import './App.css';
+import './App';
 import { Flex, Box } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
 import Favorites from './pages/favorites';
