@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 import TrackGrid from '../components/TrackGrid';
 import { Track } from '../types';
 
@@ -16,11 +16,7 @@ const Favorites = () => {
       <Heading size="lg" mt="4" textAlign="center">
         Favorites
       </Heading>
-      {favorites.length === 0 ? (
-        <Text mt="4">No favorite tracks found.</Text>
-      ) : (
-        <TrackGrid tracks={favorites} favorites={favorites} setFavorites={setFavorites} />
-      )}
+      <TrackGrid tracks={favorites} favorites={favorites} setFavorites={setFavorites} />
     </Box>
   );
 };

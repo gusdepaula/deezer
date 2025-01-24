@@ -4,6 +4,13 @@ import ButtonFavorite from '../ButtonFavorite';
 import { TrackGridProps } from '../../types';
 
 const TrackGrid = ({ tracks, favorites, setFavorites }: TrackGridProps) => {
+  if (tracks.length === 0) {
+    return (
+      <Text mt="4" data-testid="no-favorite">
+        No favorite tracks found.
+      </Text>
+    );
+  }
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} mt="4">
       {tracks.map((track, index) => (
