@@ -1,14 +1,9 @@
 import { Button } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
 import { ButtonFavoriteProps } from '../../types';
 
 const ButtonFavorite = ({ track, favorites, setFavorites }: ButtonFavoriteProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  useEffect(() => {
-    setIsFavorite(favorites.some(favorite => favorite.id === track.id));
-  }, [favorites, track]);
+  const isFavorite = favorites.some(favorite => favorite.id === track.id);
 
   const handleAddToFavorites = () => {
     let updatedFavorites;
