@@ -1,50 +1,85 @@
-# React + TypeScript + Vite
+# Deezer Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de exemplo que consome a API do Deezer para exibir músicas e álbuns, com foco em responsividade, estrutura de código limpa, e uma interface moderna. O projeto foi implementado usando as tecnologias mais recentes para garantir qualidade e performance.
 
-Currently, two official plugins are available:
+## ✅ Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **ReactJs (Vite)**: Para a criação de interfaces modernas e responsivas.
+- **Chakra UI v2**: Para estilizações dinâmicas e componentes acessíveis.
+- **Axios**: Para requisições HTTP à API do Deezer.
+- **Responsividade**: Layout adaptável para diferentes dispositivos.
+- **Testes Unitários (Vitest)**: Para garantir a confiabilidade e a manutenção do código.
+- **Documentação Clara**: Para facilitar a compreensão e utilização do projeto.
+- **Estrutura Limpa**: Organização que segue boas práticas de desenvolvimento.
+- **Vercel**: Hospedagem da aplicação.
+- **API do Deezer**: Consumo dos dados de álbuns, artistas e faixas.
 
-## Expanding the ESLint configuration
+## 🏡 Endereços
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Aplicação Online**: [https://deezer-pi.vercel.app/](https://deezer-pi.vercel.app/)
+- **Repositório GitHub**: [https://github.com/gusdepaula/deezer](https://github.com/gusdepaula/deezer)
 
-- Configure the top-level `parserOptions` property like this:
+## ⚙️ Como Baixar e Rodar o Projeto Localmente
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Clone o repositório:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   ```bash
+   git clone https://github.com/gusdepaula/deezer.git
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. Acesse o diretório do projeto:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   cd deezer
+   ```
+
+3. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+4. Inicie o servidor de desenvolvimento:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Abra o navegador e acesse:
+   ```
+   http://localhost:5173
+   ```
+
+## 🔧 Como Executar os Testes Unitários
+
+1. Certifique-se de que as dependências foram instaladas:
+
+   ```bash
+   npm install
+   ```
+
+2. Execute os testes:
+
+   ```bash
+   npm run test
+   ```
+
+3. Para executar os testes em modo "watch" (observando as alterações nos arquivos):
+   ```bash
+   npm run test:watch
+   ```
+
+## 📊 Funcionalidades Principais
+
+- Exibição de músicas, álbuns e artistas.
+- Busca dinâmica por músicas e artistas.
+- Botões interativos com ícones de favoritos.
+- Layout responsivo para dispositivos móveis, tablets e desktops.
+
+## ✨ Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests no repositório GitHub.
+
+---
+
+Desenvolvido com ❤️ por Gustavo.
