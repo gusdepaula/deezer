@@ -1,5 +1,5 @@
 import './App';
-import { Flex, Box, Image, Spinner } from '@chakra-ui/react';
+import { Flex, Box, Spinner, Text } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
 import Aside from './components/Aside';
 import { fetchTopTracks } from './services/api';
@@ -28,8 +28,11 @@ function App() {
       <Box flex="1">
         <Suspense
           fallback={
-            <Flex height="100vh" justifyContent="center" alignItems="center">
+            <Flex height="100vh" justifyContent="center" alignItems="center" flexDirection="column">
               <Spinner size="lg" />
+              <Box mt="4">
+                <Text>Loading...</Text>
+              </Box>
             </Flex>
           }
         >
