@@ -32,7 +32,7 @@ const TrackGrid: React.FC<TrackGridProps> = ({ tracks, favorites, setFavorites }
             <Text fontWeight="bold" mr="4">
               #{index + 1}
             </Text>
-            <Image src={track.album.cover_medium} alt={track.title} boxSize="100px" mr="4" borderRadius="md" />
+            <Image src={track.album.cover_medium} alt={track.title} boxSize="100px" mr="4" borderRadius="md" loading="lazy" />
             <Box flex="1" textAlign={{ base: 'center', md: 'left' }}>
               <Text fontWeight="bold" lineHeight="1.5" minHeight="3em">
                 {track.title}

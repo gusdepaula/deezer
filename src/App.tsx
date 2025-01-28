@@ -1,12 +1,13 @@
 import './App';
-import { Flex, Box } from '@chakra-ui/react';
+import { Flex, Box, Image, Spinner } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
-import Favorites from './pages/favorites';
 import Aside from './components/Aside';
-import Main from './pages/main';
 import { fetchTopTracks } from './services/api';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { Track } from './types';
+
+const Main = lazy(() => import('./pages/main'));
+const Favorites = lazy(() => import('./pages/favorites'));
 
 function App() {
   const [tracks, setTracks] = useState<Track[]>([]);
@@ -25,10 +26,21 @@ function App() {
     <Flex height="100vh" flexDirection={{ base: 'column', md: 'row' }}>
       <Aside resetTracks={resetTracks} />
       <Box flex="1">
-        <Routes>
-          <Route path="/" element={<Main tracks={tracks} setTracks={setTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
-          <Route path="/favorites" element={<Favorites />} />
-        </Routes>
+        <Suspense
+          fallback={
+            <Flex height="100vh" justifyContent="center" alignItems="center">
+              <Spinner size="lg" />
+            </Flex>
+          }
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={<Main tracks={tracks} setTracks={setTracks} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />}
+            />
+            <Route path="/favorites" element={<Favorites />} />
+          </Routes>
+        </Suspense>
       </Box>
     </Flex>
   );
