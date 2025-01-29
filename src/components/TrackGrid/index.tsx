@@ -3,6 +3,7 @@ import { Box, SimpleGrid, Flex, Text, Image, Button, Link } from '@chakra-ui/rea
 import ButtonAudio from '../ButtonAudio';
 import ButtonFavorite from '../ButtonFavorite';
 import { TrackGridProps } from '../../types';
+import { useColorMode } from '../ui/color-mode';
 
 const TrackGrid: React.FC<TrackGridProps> = ({ tracks, favorites, setFavorites }) => {
   if (tracks.length === 0) {
@@ -12,6 +13,9 @@ const TrackGrid: React.FC<TrackGridProps> = ({ tracks, favorites, setFavorites }
       </Text>
     );
   }
+
+  const { colorMode } = useColorMode();
+  const borderColor = colorMode === 'light' ? '#e1e1e1' : '#27272b';
 
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} mt="4">
@@ -23,7 +27,7 @@ const TrackGrid: React.FC<TrackGridProps> = ({ tracks, favorites, setFavorites }
           borderRadius="md"
           boxShadow="md"
           border="1px solid"
-          borderColor="#27272b"
+          borderColor={borderColor}
           _hover={{ boxShadow: 'lg', transform: 'translateY(-2px)' }}
           transition="all 0.3s ease"
           margin="10px"
