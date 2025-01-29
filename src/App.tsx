@@ -5,6 +5,7 @@ import Aside from './components/Aside';
 import { fetchTopTracks } from './services/api';
 import { useState, useEffect, Suspense, lazy } from 'react';
 import { Track } from './types';
+import { ColorModeButton } from './components/ui/color-mode';
 
 const Main = lazy(() => import('./pages/main'));
 const Favorites = lazy(() => import('./pages/favorites'));
@@ -26,6 +27,9 @@ function App() {
     <Flex height="100vh" flexDirection={{ base: 'column', md: 'row' }}>
       <Aside resetTracks={resetTracks} />
       <Box flex="1">
+        <Flex justifyContent="flex-end" p="4">
+          <ColorModeButton />
+        </Flex>
         <Suspense
           fallback={
             <Flex height="100vh" justifyContent="center" alignItems="center" flexDirection="column">
