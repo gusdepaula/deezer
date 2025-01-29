@@ -75,7 +75,7 @@ Este é um projeto de exemplo que consome a API do Deezer para exibir músicas e
 - Busca dinâmica por músicas e artistas.
 - Botões interativos com ícones de favoritos.
 - Layout responsivo para dispositivos móveis, tablets e desktops.
-- Dark/light theme do Chakra UI
+- Dark/light mode do Chakra UI
 
 ## ✨ Contribuições
 
