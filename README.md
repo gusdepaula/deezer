@@ -5,7 +5,7 @@ Este é um projeto de exemplo que consome a API do Deezer para exibir músicas e
 ## ✅ Tecnologias Utilizadas
 
 - **ReactJs (Vite)**: Para a criação de interfaces modernas e responsivas.
-- **Chakra UI v3.5.1**: Para estilizações dinâmicas e componentes acessíveis.
+- **Chakra UI**: Para estilizações dinâmicas e componentes acessíveis.
 - **Axios**: Para requisições HTTP à API do Deezer.
 - **Responsividade**: Layout adaptável para diferentes dispositivos.
 - **Testes Unitários (Vitest)**: Para garantir a confiabilidade e a manutenção do código.
