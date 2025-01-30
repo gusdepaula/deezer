@@ -27,7 +27,7 @@ function App() {
     <Flex height="100vh" flexDirection={{ base: 'column', md: 'row' }}>
       <Aside resetTracks={resetTracks} />
       <Box flex="1">
-        <Flex justifyContent="flex-end" p="4">
+        <Flex display={{ base: 'none', md: 'flex' }} justifyContent="flex-end" p="4">
           <ColorModeButton />
         </Flex>
         <Suspense
